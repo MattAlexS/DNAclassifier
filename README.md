@@ -5,7 +5,6 @@ The purpose of the DNA Classifier is to evolve Side Effect Machines (SEMs) to ex
 
 ## Description
 
-
 Since ultimately, the task is still a classification task. I decided to use
 the Logistic Regression Classifier in the SciKit Learn python package as
 my fitness function. For every Side Effect Machine that I generate, I use
@@ -70,7 +69,7 @@ shared this classification 'opinion' for each sequence.
 Local Installation
 
 1. Git Hub
-git clone https://github.com/MattAlexS/DNAClassifer
+```git clone https://github.com/MattAlexS/DNAClassifer```
 
 2. Download Zip File
 ```wget  https://github.com/MattAlexS/DNAClassifer/archive/master.zip```
