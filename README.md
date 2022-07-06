@@ -62,8 +62,8 @@ shared this classification 'opinion' for each sequence.
 
 ### Dependencies
 
-*Python Version 3.0+ 
-*scikit-learn Python library 
+* Python Version 3.0 or higher
+    * scikit-learn package
 
 ### Installing
 
@@ -96,9 +96,6 @@ Matthew Alexander Stoodley - m.a.stoodley@gmail.com
 
 ## Version History
 
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
 * 0.1
     * Initial Release
 
