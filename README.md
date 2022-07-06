@@ -5,6 +5,15 @@ The purpose of the DNA Classifier is to evolve Side Effect Machines (SEMs) to ex
 
 ## Description
 
+This classifier uses SEMs to parse DNA sequences to extract features. 
+SEMs are simple finite sate machines that take DNA as input and output 
+counts of how many times each state was eneterd. The state information 
+is normalized by the length of the DNA sequence, transforming the seuence 
+into numerical features. SEMs are evolved in a ring structure to select machines 
+that produce useful features. The fitness of an SEM is found by the ability of its
+features to train a logistic regression classifier to predict the correct DNA 
+class label. 
+
 Since ultimately, the task is still a classification task. I decided to use
 the Logistic Regression Classifier in the SciKit Learn python package as
 my fitness function. For every Side Effect Machine that I generate, I use
