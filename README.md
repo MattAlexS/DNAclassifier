@@ -1,9 +1,10 @@
-Explanation of Approach
+# DNA Classifier
 
-I decided to take the approach of solving this problem with an evolutionary 
-algorithm very much like the those described in the Topics in 
-Bioinformatics class. In particular the Side Effect Machine with Ring
-Optimization seemed very fitting and so I did my best to replicate that.
+The purpose of the DNA Classifier is to evolve Side Effect Machines (SEMs) to extact informative features for classifying DNA sequences. 
+
+
+## Description
+
 
 Since ultimately, the task is still a classification task. I decided to use
 the Logistic Regression Classifier in the SciKit Learn python package as
@@ -55,6 +56,31 @@ for each machine and they 'vote' for the sequence's group. The highest group is
 selected as well as a confidence measure indicating what ratio of the machines
 shared this classification 'opinion' for each sequence.
 
+
+## Getting Started
+
+
+### Dependencies
+
+*Python Version 3.0+ 
+*scikit-learn Python library 
+
+### Installing
+
+* How/where to download your program
+* Any modifications needed to be made to files/folders
+
+### Executing program
+
+* How to run the program
+* Step-by-step bullets
+```
+code blocks for commands
+```
+
+
+## Sample Output
+
 A sample output can be found in output.txt. Since these are random, running
 the program again will not generate the same results, but that answer for the
 sequence groupings should still bee the same. 
@@ -63,3 +89,23 @@ in the ring have a machine in it. If this is the case it is probably best
 to run it again with more generations, in order to properly fill the ring so the
 machines can transition from exploration to exploitation.
 
+
+## Authors
+
+Matthew Alexander Stoodley - m.a.stoodley@gmail.com
+
+## Version History
+
+* 0.2
+    * Various bug fixes and optimizations
+    * See [commit change]() or See [release history]()
+* 0.1
+    * Initial Release
+
+## License
+
+This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+
+## Acknowledgments
+
+My advisor Dr. Daniel Ashlock 
