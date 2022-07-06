@@ -67,8 +67,14 @@ shared this classification 'opinion' for each sequence.
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+Local Installation
+
+1. Git Hub
+git clone https://github.com/MattAlexS/DNAClassifer
+
+2. Download Zip File
+```wget  https://github.com/MattAlexS/DNAClassifer/archive/master.zip```
+
 
 ### Executing program
 
