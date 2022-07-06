@@ -59,14 +59,11 @@ class SEM:
 ####THE FITNESS FUNCTION###################################################
 #Takes an SEM, training data, and testingdata as inputs
 #Outputs a fitness value evaluating the effectiveness of that state machine
-#Half of the fitness is the performance of a logistic regression model
+#Fitness is the performance of a logistic regression model
 #when trained and cross validated on known data.
-#The other half is the variability of results when the model is applied
-#to the test data (I know this sounds honky, and to some degree it is,
-#I elborate more on this in the readme.txt)
 ###########################################################################
     
-def fitness(sem, traindata, testdata):
+def fitness(sem, traindata):
     assessments = []
     for i in range(4):          #the model is trained and cross validated 4 times
         random.shuffle(traindata)   #each time the order of the sequences is shuffled to change what is trained and validated
@@ -87,27 +84,9 @@ def fitness(sem, traindata, testdata):
                 count += 1
         assessments.append(count/len(performance))  #calculating ratio of correct guesses
     averagetraining = (sum(assessments)/4)  #averaging the 4 outcomes
-    test_feat = []
-    for seq in testdata:
-        test_feat.append(sem.run(seq))      #running the test sequences through the SEM
-    guess = LogisticRegression(C=1e3, multi_class='ovr').fit(x,y).predict(test_feat) #training a model and predicting the testdata classification
-    counts =[0,0,0,0]       #Counting the number of sequences predicted to be in each group 
-    for i in guess:
-        if i == 1:
-            counts[0] += 1
-        elif i == 2:
-            counts[1] += 1
-        elif i == 3:
-            counts[2] += 1
-        elif i == 4:
-            counts[3] += 1
-    absolute=[]
-    for i in counts:
-        absolute.append(abs(50-i))      #calculating the variability of the counts
-    testingrecognition = sum(absolute)/300
-    return averagetraining - testingrecognition
+    return averagetraining
 #fitness is higher when cross validation performs well
-#and lower when variation in the sequence counts is high
+
 
 
 
@@ -119,7 +98,7 @@ def fitness(sem, traindata, testdata):
 def momentoftruth(graph, traindata, testdata):
     x = []
     y = []
-    test = SEM(len(graph),graph)            #very similar to fitness, no variability
+    test = SEM(len(graph),graph)            #very similar to , no variability
     for entry in traindata:                 #no cross validation, at this point it is 
         x.append(test.run(entry[0]))        #assumed the SEMs are 'good'
         y.append(entry[1])
@@ -215,8 +194,8 @@ def mate(mates, mutationpercent):
 #the current occupant if the child's fitness is higher
 ####################################################################
 
-def stork(offspring, dispersionrange, datingpool, traindata, testdata):
-    score = fitness(SEM(len(offspring[0]),offspring[0]), traindata, testdata) #calculates fitness of offspring
+def stork(offspring, dispersionrange, datingpool, traindata):
+    score = fitness(SEM(len(offspring[0]),offspring[0]), traindata) #calculates fitness of offspring
     done = False
     while done == False:        #picking a viable position
         flip = random.randint(0,1)
@@ -245,7 +224,7 @@ def stork(offspring, dispersionrange, datingpool, traindata, testdata):
 #ready to spread around the sides
 #####################################################################
 
-def randominit(maxpop, seedsize, statecount, traindata,testdata):
+def randominit(maxpop, seedsize, statecount, traindata):
     seed = []
     community = []
     for i in range(seedsize):       #generating the random machines
@@ -259,7 +238,7 @@ def randominit(maxpop, seedsize, statecount, traindata,testdata):
             random_machine[i] = edges
         seed.append(random_machine)
     for i in seed:      #adding the seeds to the community (ring)
-        community.append([i, fitness(SEM(statecount, i), traindata,testdata)]) #the community is a list made up lists containing an SEMs graph and its fitness 
+        community.append([i, fitness(SEM(statecount, i), traindata)]) #the community is a list made up lists containing an SEMs graph and its fitness 
     startempty = maxpop - seedsize      
     if startempty % 2 == 0:     #extending the ring on both sides
         for i in range(startempty//2):
@@ -286,10 +265,10 @@ def randominit(maxpop, seedsize, statecount, traindata,testdata):
 #Every time the population size either grows or stays the same
 #######################################################################
 
-def simulate(statecount, popsize, seedsize, materange, generations, mutrate, traindata, testdata):
-    community = randominit(popsize, seedsize, statecount, traindata, testdata)
+def simulate(statecount, popsize, seedsize, materange, generations, mutrate, traindata):
+    community = randominit(popsize, seedsize, statecount, traindata)
     for i in range(generations):
-        stork(mate(matchmaker(community, materange), mutrate), materange, community, traindata, testdata)
+        stork(mate(matchmaker(community, materange), mutrate), materange, community, traindata)
     return community
 
 
