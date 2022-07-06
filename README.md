@@ -20,31 +20,7 @@ my fitness function. For every Side Effect Machine that I generate, I use
 the outputs to train a model using 3/4 of the training data provided, 
 reserving 1/4 of the data for Cross Validation (I repeat this 4 times, 
 shuffling the sequences each time to eliminate sampling issues). The precentage 
-of correct classification in the Cross Validation group accounts for half of
-the fitness. Initially, this was my only metric for fitness and was shown to
-be ineffective because it left virtually no room for the machines to improve
-through evolution, almost every SEM generated with enough states to solve the
-problem started with very close to maximum fitness. Most of these machines gave
-a solution in which there were 100 sequence from Group 1 and 0 sequences from
-Group 2. While this is possibly the truth (and from where I am right now I
-have no way of knowing), I found something peculiar.  Every so often, maybe
-10% of the time, I would generate a machine that not only had high fitness,
-but also grouped the sequences equally (50 of each) into the 4 groups. It
-occurred to me that many of the machines may be good for the task, but few
-would be exceptional. This hunch that the (100,0,50,50) machines were
-slipping through my fitness function was confirmed when I began looking at 
-low performing machines. I found that many machines with comparably low
- (.6/1.0) fitness when given the test set also returned (100,0,50,50)
- even though they were performing poorly on the cross validation. In order
-to get around this I added another component to the fitness equation, which
-assessed the variability of number of sequences in each group. I used this
-to punish machines that output highly variable groupings. Unfortunately, this
-imposes some unverified outside stipulation onto the machines and none of
-the things that lead me to believe this (exceptional machines will be
-more rare, some bad machines output highly variable groupings) are conclusive.
-It is totally possible that the sequences I have labelled as group 2 are 
-actually an outgroup that is closely related to group 1. Without more data to 
-train the SEMs on I will not know.
+of correct classification in the Cross Validation group gives the fitness. 
 
 To replicate the ring structure described in Ashlock 2008. I started the initial
 random population off in the middle of the ring and limitted how far the
