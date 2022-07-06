@@ -81,10 +81,15 @@ code blocks for commands
 
 ## Sample Output
 
-A sample output can be found in output.txt. Since these are random, running
+A sample output can be found in [output.txt.](/output.txt) 
+
+Since these are random, running
 the program again will not generate the same results, but that answer for the
-sequence groupings should still bee the same. 
-Warning: Sometimes the program gives an error because not all of the spaces
+sequence groupings should still be the same. 
+
+## Help
+
+Common issue is that the program gives an error if not all of the spaces
 in the ring have a machine in it. If this is the case it is probably best
 to run it again with more generations, in order to properly fill the ring so the
 machines can transition from exploration to exploitation.
