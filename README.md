@@ -75,15 +75,6 @@ Local Installation
 ```wget  https://github.com/MattAlexS/DNAClassifer/archive/master.zip```
 
 
-### Executing program
-
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
-
-
 ## Sample Output
 
 A sample output can be found in [output.txt.](/output.txt) 
